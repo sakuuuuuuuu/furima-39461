@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # get 'posts', to: 'posts#index'
-  root to: 'posts#index'
+  root to: 'items#index'
 
 
 
