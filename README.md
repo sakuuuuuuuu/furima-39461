@@ -30,7 +30,11 @@ Things you may want to cover:
 |------             |----   |-------|
 |nickname           |string |null: false|
 |email              |string |null: false  unique: true|
-|encrypted_password |string | null: false |
+|password           |string | null: false |
+|password_confirmation|string | null: false |
+|name                 |string | null: false |
+|name_kana            |string | null: false |
+|birthday             |string | null: false |
 
 
 ### Association
@@ -43,13 +47,13 @@ Things you may want to cover:
 
 | Column              | Type   | Options                        |
 | ------              | -------| ------------------------------ |
-| image               | text   | null: false |
+| name                | string  | null: false |
 | explanation         | string | null: false |
-| category            | string | null: false |
-| condition           | string | null: false |
-| del-fee             | string | null: false |
-| departure           | string | null: false |
-| days-until-shipping | string | null: false |
+| category_id            |integer | null: false |
+| condition_id           |integer | null: false |
+| del-fee_id             |integer | null: false |
+| departure_id           |integer | null: false |
+| days-until-shipping_id |integer | null: false |
 | price               | string | null: false |
 
 
@@ -58,13 +62,13 @@ Things you may want to cover:
 - belongs_to :purchase record
 
 
-## purchase records テーブル
+## purchase_records テーブル
 
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| items_id      | references | null: false, foreign_key: true |
-| shipping_id   | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
+| items      | references | null: false, foreign_key: true |
+| shipping   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -75,11 +79,14 @@ Things you may want to cover:
 
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
+| credit_num    | string     | null: false |
+| credit_limit  | string     | null: false |
+| security_code | string     | null: false |
 | zip           | string     | null: false |
-| prefecture    | string     | null: false | 
+| prefecture_id | integer    | null: false | 
 | city          | string     | null: false |
 | street        | string     | null: false |
-| building      | string     | null: false |
+| building      | string     |             |
 | phone         | string     | null: false |
 
 ### Association
