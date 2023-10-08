@@ -33,8 +33,8 @@ Things you may want to cover:
 |password           |string | null: false |
 |password_confirmation|string | null: false |
 |name                 |string | null: false |
-|name_kana            |string | null: false |
-|birthday             |string | null: false |
+|name-kana            |string | null: false |
+|birthday_id             |integer | null: false |
 
 
 ### Association
@@ -79,9 +79,9 @@ Things you may want to cover:
 
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
-| credit_num    | string     | null: false |
-| credit_limit  | string     | null: false |
-| security_code | string     | null: false |
+| credit-num    | string     | null: false |
+| credit-limit  | string     | null: false |
+| security-code | string     | null: false |
 | zip           | string     | null: false |
 | prefecture_id | integer    | null: false | 
 | city          | string     | null: false |
