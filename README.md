@@ -30,11 +30,14 @@ Things you may want to cover:
 |------             |----   |-------|
 |nickname           |string |null: false|
 |email              |string |null: false  unique: true|
-|password           |string | null: false |
-|password_confirmation|string | null: false |
-|name                 |string | null: false |
-|name-kana            |string | null: false |
-|birthday_id             |integer | null: false |
+|encrypted_password |string | null: false |
+|name_last          |string | null: false |
+|name_first         |string | null: false |
+|name_last_kana     |string | null: false |
+|name_first_kana    |string | null: false |
+|birth_year_id         |integer | null: false |
+|birth_month_id         |integer | null: false |
+|birth_day_id         |integer | null: false |
 
 
 ### Association
@@ -59,7 +62,7 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- belongs_to :purchase record
+- belongs_to :purchase_record
 
 
 ## purchase_records テーブル
@@ -67,13 +70,13 @@ Things you may want to cover:
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
 | user       | references | null: false, foreign_key: true |
-| items      | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 | shipping   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping
+- has_many   :shipping
 
 ## shippings テーブル
 
@@ -88,9 +91,11 @@ Things you may want to cover:
 | street        | string     | null: false |
 | building      | string     |             |
 | phone         | string     | null: false |
+| purchase_record| references | null: false, foreign_key: true |
+
 
 ### Association
-- belongs_to :purchase record
+- has_many :purchase_record
 
 
 
