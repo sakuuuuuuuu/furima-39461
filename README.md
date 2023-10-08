@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many :purchase records
+- has_many :purchase_records
 
 
 
@@ -61,7 +61,7 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- belongs_to :purchase_record
+- has_one    :purchase_record
 
 
 ## purchase_records テーブル
