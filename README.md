@@ -35,9 +35,7 @@ Things you may want to cover:
 |name_first         |string | null: false |
 |name_last_kana     |string | null: false |
 |name_first_kana    |string | null: false |
-|birth_year_id         |integer | null: false |
-|birth_month_id         |integer | null: false |
-|birth_day_id         |integer | null: false |
+|birth_day        |date | null: false |
 
 
 ### Association
@@ -51,13 +49,14 @@ Things you may want to cover:
 | Column              | Type   | Options                        |
 | ------              | -------| ------------------------------ |
 | name                | string  | null: false |
-| explanation         | string | null: false |
+| explanation         | text    | null: false |
 | category_id            |integer | null: false |
 | condition_id           |integer | null: false |
-| del-fee_id             |integer | null: false |
+| del_fee_id             |integer | null: false |
 | departure_id           |integer | null: false |
-| days-until-shipping_id |integer | null: false |
-| price               | string | null: false |
+| days_until_shipping_id |integer | null: false |
+| price               | integer | null: false |
+| user                | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -71,20 +70,16 @@ Things you may want to cover:
 | ------        | ---------- | ------------------------------ |
 | user       | references | null: false, foreign_key: true |
 | item       | references | null: false, foreign_key: true |
-| shipping   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_many   :shipping
+- has_one   :shipping
 
 ## shippings テーブル
 
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
-| credit-num    | string     | null: false |
-| credit-limit  | string     | null: false |
-| security-code | string     | null: false |
 | zip           | string     | null: false |
 | prefecture_id | integer    | null: false | 
 | city          | string     | null: false |
@@ -95,7 +90,7 @@ Things you may want to cover:
 
 
 ### Association
-- has_many :purchase_record
+- belongs_to : purchase_record
 
 
 
