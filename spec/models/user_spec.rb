@@ -26,6 +26,22 @@
   # pending "add some examples to (or delete) #{__FILE__}"
 
   
+  # RSpec.describe User, type: :model do
+  #   before do
+  #     @user = FactoryBot.build(:user)
+  #   end
+  
+  #   describe 'ユーザー新規登録' do
+  #     context '新規登録できる場合' do
+  #       it "nameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
+  
+  #       end
+  #     end
+  #     context '新規登録できない場合' do
+  #       it "nameが空では登録できない" do
+  
+  #       end
+
 
 
 
@@ -35,10 +51,10 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe 'ユーザー新規登録' do
+    context '新規登録できる場合' do
     it 'ユーザー新規登録できる' do
       expect(@user).to be_valid
     end
-
   end
   context 'ユーザー新規登録' do
     it 'nicknameが空では登録できない' do
@@ -144,6 +160,6 @@ end
     another_user.valid?
     expect(another_user.errors.full_messages).to include('Email has already been taken')
   end
-  
+end
 end
 end
