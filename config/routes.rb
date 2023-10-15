@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # get 'posts', to: 'posts#index'
   root to: 'items#index'
-  resources :users, only: [:edit, :update]
+  # resources :users, only: [:edit, :update]
 
 
 
