@@ -11,20 +11,10 @@ class User < ApplicationRecord
          validates :name_first_kana, presence: true,format: { with: /\A[\p{katakana}ー]+\z/}
 
          validates :birth_day, presence: true
-         validates :password, format:{ with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i }
+         validates :password, format:{ with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
 
-
+end
 
           # email と  password はデバイスで生成されてるからバリデーション記述する必要なし
-  end
-
-
-#   |nickname           |string |null: false|
-# |email              |string |null: false  unique: true|
-# |encrypted_password |string | null: false |
-# |name_last          |string | null: false |
-# |name_first         |string | null: false |
-# |name_last_kana     |string | null: false |
-# |name_first_kana    |string | null: false |
-# |birth_day         |date | null: false |
-
+        # パスワードの６文字以上制限がデバイスの標準装備だが、大文字小文字入力の制限の設置の記述必要
+  
