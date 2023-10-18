@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+         has_many :items
+
          validates :nickname, presence: true
          validates :name_last, presence: true ,format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
          validates :name_first, presence: true,format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
