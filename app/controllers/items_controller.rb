@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
-    @item = Item.new
+    @item = item.order("created_at DESC")
   end
 
   def new
@@ -11,13 +11,17 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Tweet.create(item_params)
-    redirect_to '/'
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
   def item_params
-    params.require(:item).permit(:name, :explanation, :price)
+    params.require(:item).permit(:name, :explanation, :category_id, :condition_id,:del_fee_id,:prefecture_id,:days_until_shipping_id,:price,:user)
   end
 
   # def move_to_index
