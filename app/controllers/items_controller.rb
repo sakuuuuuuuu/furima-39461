@@ -6,6 +6,17 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+  end
+
+  def create
+    Tweet.create(item_params)
+    redirect_to '/'
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :explanation, :price)
   end
 
   # def move_to_index
