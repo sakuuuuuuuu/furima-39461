@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
+    @item = Item.new
   end
 
   def new

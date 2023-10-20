@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :days_until_shipping_id
 
 
+
   has_one :purchase_record
   belongs_to :user
 
@@ -14,6 +15,9 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :explaination, presence: true
   validates :category_id, presence: true
+  #ジャンルの選択が「---」の時は保存できないようにする
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank"}  
+
   validates :condition_id, presence: true
   validates :del_fee_id, presence: true
   validates :prefecture_id, presence: true
