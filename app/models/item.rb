@@ -16,9 +16,11 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-
+  validates :image, presence: true
   validates :name, presence: true
   validates :explaination, presence: true
+  validates :price, presence:true
+  
 
   #下記の選択が「---」の時は保存できないようにする
   validates :category_id, numericality: { other_than: 1, message: "can't be blank"} 
@@ -26,14 +28,19 @@ class Item < ApplicationRecord
   validates :del_fee_id, numericality: { other_than: 1, message: "can't be blank"}
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :days_until_shipping_id, numericality: { other_than: 1, message: "can't be blank"} 
-  
+  validates :price, numericality:{only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+
+
+
 
   # validates :category_id, presence: true
   # validates :condition_id, presence: true
   # validates :del_fee_id, presence: true
   # validates :prefecture_id, presence: true
   # validates :days_until_shipping_id, presence: true
-  validates :price, presence: true
+  # validates :price, presence: true { with: /\Az/}
+  # validates :price, presence: true, format: { with: /\A\d+\z/ }
+
   # validates :user, presence: true
   
 end
