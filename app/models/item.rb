@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
 
 
-  has_one :purchase_record
+  # has_one :purchase_record  商品購入機能実装で復活させる
   belongs_to :user
   has_one_attached :image
 
@@ -20,6 +20,9 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :explaination, presence: true
   validates :price, presence:true
+
+  validates :price, format: { with: /\A[0-9]+\z/, message: "Price is not a number" }
+
   
 
   #下記の選択が「---」の時は保存できないようにする

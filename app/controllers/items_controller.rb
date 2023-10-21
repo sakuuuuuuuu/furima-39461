@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
-    @items = Item.all
+    # @items = Item.all  商品一覧機能実装時に復活させる
   end
 
   def new
