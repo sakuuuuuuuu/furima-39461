@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
-    @item = item.order("created_at DESC")
+    @items = Item.all
   end
 
   def new
@@ -12,6 +12,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    # binding.pry
+    
     if @item.save
       redirect_to root_path
     else
@@ -21,7 +23,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :explanation, :category_id, :condition_id,:del_fee_id,:prefecture_id,:days_until_shipping_id,:price,:user)
+    params.require(:item).permit(:image,:name, :explaination, :category_id, :condition_id,:del_fee_id,:prefecture_id,:days_until_shipping_id,:price,).merge(user_id: current_user.id)
   end
 
   # def move_to_index

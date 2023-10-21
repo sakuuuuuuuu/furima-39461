@@ -1,4 +1,4 @@
-class condition_id < ActiveHash::Base
+class Condition < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '新品・未使用' },
@@ -11,6 +11,6 @@ class condition_id < ActiveHash::Base
 
 
 include ActiveHash::Associations
-  has_many :item
+  has_many :items
 
 end
