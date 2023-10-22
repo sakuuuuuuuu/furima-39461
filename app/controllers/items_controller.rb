@@ -1,8 +1,29 @@
 class ItemsController < ApplicationController
-  # before_action :move_to_index, except: [:index, :show]
+  before_action :authenticate_user!, only: [:new]
 
 
   def index  # indexアクションを定義した
+    # @items = Item.all  商品一覧機能実装時に復活させる
+  end
+
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.new(item_params)
+    # binding.pry
+    
+    if @item.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:image,:name, :explaination, :category_id, :condition_id,:del_fee_id,:prefecture_id,:days_until_shipping_id,:price,).merge(user_id: current_user.id)
   end
 
   # def move_to_index
