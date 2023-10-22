@@ -21,8 +21,8 @@ class Item < ApplicationRecord
   validates :explaination, presence: true
   validates :price, presence:true
 
-  validates :price, format: { with: /\A[0-9]+\z/, message: "Price is not a number" }
-
+  # validates :price, format: { with: /\A[0-9]+\z/, message: "Price is not a number" }
+  # 上記記述は下記validates :price, numericality〜の記述に含まれているため記述不要
   
 
   #下記の選択が「---」の時は保存できないようにする
