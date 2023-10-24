@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
-    # @items = Item.all  商品一覧機能実装時に復活させる
+     @items = Item.all  
   end
 
   def new
@@ -20,6 +20,8 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+
 
   private
   def item_params
