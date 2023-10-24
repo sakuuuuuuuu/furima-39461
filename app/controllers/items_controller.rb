@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
-    # @items = Item.all  商品一覧機能実装時に復活させる
+     @items = Item.order("created_at DESC")
   end
 
   def new
@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     
     if @item.save
       redirect_to root_path
@@ -20,6 +19,8 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+
 
   private
   def item_params
