@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   def index  # indexアクションを定義した
      @items = Item.all  
+     @items = Item.order("created_at DESC")
   end
 
   def new
@@ -12,7 +13,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     
     if @item.save
       redirect_to root_path
