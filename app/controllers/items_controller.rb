@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
 
 
   def index  # indexアクションを定義した
-     @items = Item.all  
      @items = Item.order("created_at DESC")
   end
 
