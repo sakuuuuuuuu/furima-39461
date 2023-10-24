@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :condition
   # , class_name: 'Condition'
   belongs_to :del_fee
-  belongs_to :Prefecture
+  belongs_to :prefecture
   # , class_name: 'Prefecture'
   belongs_to :days_until_shipping
 
