@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit]
+  before_action :set_item, only: [:show, :edit]
+
+  
 
 
-  def index  # indexアクションを定義した
+
+  def index  
      @items = Item.order("created_at DESC")
   end
 
@@ -21,18 +25,16 @@ class ItemsController < ApplicationController
   end
 
  def show
-   @item = Item.find(params[:id])
+  
  end
 
 def edit
-   @item = Item.find(params[:id])
+   
    contributor_confirmation
 end
 
 def update
   @item = Item.find(params[:id])
-
-  # redirect_to item_path
   if @item.update(item_params)
     redirect_to item_path
   else
@@ -49,26 +51,11 @@ end
 
   def contributor_confirmation
     redirect_to root_path unless current_user == @item.user
-  
+  end
 
-    # if redirect_to root_path unless current_user == @item.user
-    # elsif redirect_to new_user_session_path unless user_signed_in?
-    # end
-  end  
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-  # def move_to_index
-  #   unless user_signed_in?
-  #     redirect_to action: :index
-  #   end
-  # end
 end
-
-
-# <h3>編集する</h3>
-# <%= form_with(model: @tweet, local: true) do |form| %>
-#   <%= form.text_field :name, placeholder: "Nickname" %>
-#   <%= form.text_field :image, placeholder: "Image Url" %>
-#   <%= form.text_area :text, placeholder: "text", rows: "10" %>
-#   <%= form.submit "SEND" %>
-# <% end %>
 
