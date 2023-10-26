@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new,:edit]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new,:edit,:destroy]
+  before_action :set_item, only: [:show, :edit, :update,:destroy]
 
   
 
@@ -42,9 +42,11 @@ def update
 end
 
 def destroy
-  @item = Item.find(params[:id])
-  @item.destroy
-  redirect_to root_path
+  if @item.destroy(item_params)
+    redirect_to item_path
+  else
+    render :edit, status: :unprocessable_entity
+  end
 end
 
   private
@@ -64,4 +66,3 @@ end
 end
 
 
-# <%= link_to "削除", item_path(@item.id), data: { turbo_method: :delete } %>
