@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new,:edit]
 
 
   def index  # indexアクションを定義した
@@ -26,17 +26,35 @@ class ItemsController < ApplicationController
 
 def edit
    @item = Item.find(params[:id])
+   contributor_confirmation
 end
 
 def update
-  item = Item.find(params[:id])
-  item.update(item_params)
+  @item = Item.find(params[:id])
+
+  # redirect_to item_path
+  if @item.update(item_params)
+    redirect_to item_path
+  else
+    render :edit, status: :unprocessable_entity
+  end
+
 end
 
   private
   def item_params
     params.require(:item).permit(:image,:name, :explaination, :category_id, :condition_id,:del_fee_id,:prefecture_id,:days_until_shipping_id,:price,).merge(user_id: current_user.id)
   end
+
+
+  def contributor_confirmation
+    redirect_to root_path unless current_user == @item.user
+  
+
+    # if redirect_to root_path unless current_user == @item.user
+    # elsif redirect_to new_user_session_path unless user_signed_in?
+    # end
+  end  
 
   # def move_to_index
   #   unless user_signed_in?
