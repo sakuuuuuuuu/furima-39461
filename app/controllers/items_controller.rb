@@ -44,3 +44,13 @@ end
   #   end
   # end
 end
+
+
+# <h3>編集する</h3>
+# <%= form_with(model: @tweet, local: true) do |form| %>
+#   <%= form.text_field :name, placeholder: "Nickname" %>
+#   <%= form.text_field :image, placeholder: "Image Url" %>
+#   <%= form.text_area :text, placeholder: "text", rows: "10" %>
+#   <%= form.submit "SEND" %>
+# <% end %>
+
