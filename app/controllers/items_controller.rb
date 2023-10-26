@@ -39,7 +39,12 @@ def update
   else
     render :edit, status: :unprocessable_entity
   end
+end
 
+def destroy
+  @item = Item.find(params[:id])
+  @item.destroy
+  redirect_to root_path
 end
 
   private
@@ -58,3 +63,5 @@ end
 
 end
 
+
+# <%= link_to "削除", item_path(@item.id), data: { turbo_method: :delete } %>
