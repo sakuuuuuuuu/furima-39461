@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new,:edit,:destroy]
   before_action :set_item, only: [:show, :edit, :update,:destroy]
-
+  before_action :authenticate_user!, only: [:new,:edit,:destroy]
+  before_action :contributor_confirmation, only: [:edit, :destroy]
   
 
 
@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
  end
 
 def edit
-   
    contributor_confirmation
 end
 
@@ -42,8 +41,8 @@ def update
 end
 
 def destroy
-  if @item.destroy(item_params)
-    redirect_to item_path
+  if @item.destroy
+    redirect_to root_path
   else
     render :edit, status: :unprocessable_entity
   end
