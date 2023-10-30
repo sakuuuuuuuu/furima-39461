@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
 
 def edit
    contributor_confirmation
+   redirect_to root_path if current_user == @item.user
 end
 
 def update
