@@ -1,9 +1,12 @@
 class PurchaseRecordsController < ApplicationController
+  # before_action :contributor_confirmation, only: [:index]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])
     @form_object = FormObject.new # ←新しくインスタンスを生成するnewメソッド
+    contributor_confirmation
+    contributor_confirmation2
   end
 
   # def new
@@ -40,4 +43,31 @@ class PurchaseRecordsController < ApplicationController
     end
   
 
+
+  def contributor_confirmation
+    redirect_to root_path unless current_user == @item.user
+  end
+
+
+  def contributor_confirmation2
+    redirect_to root_path if current_user == @item.user
+  end
+
+
+  # def contributor_confirmation2
+  #   if current_user != @item&.user
+  #     flash[:alert] = "自身が出品した商品の商品購入ページにはアクセスできません"
+  #     redirect_to root_path
+  #   end
+  # end
+
+  # def contributor_confirmation
+  #   @item = Item.find(params[:item_id])
+  #   unless current_user == @item.user
+  #     flash[:alert] = "自身が出品した商品の商品購入ページにはアクセスできません"
+  #     redirect_to root_path
+  #   end
+  # end
 end
+
+
