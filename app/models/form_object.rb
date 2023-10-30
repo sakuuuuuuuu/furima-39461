@@ -6,12 +6,15 @@ class FormObject
     # validates :item,presence: true
     # validates :user,presence: true
 
-    validates :zip,presence: true
+    
+
+    validates :zip,presence: true,format: { with: /\A\d{3}-\d{4}\z/, message: "は正しい形式で入力してください" }
     validates :prefecture_id,numericality: {other_than: 1, message: "can't be blank"}
     validates :city,presence: true
     validates :street,presence: true   
     # validates :building
-    validates :phone,presence: true
+    validates :phone,presence: true, format: { with: /\A\d{10,11}\z/, message: "は10桁以上11桁以内の半角数字で入力してください" }
+
     #validates :purchase_record,presence: true
     validates :user_id,presence: true
     validates :item_id,presence: true
