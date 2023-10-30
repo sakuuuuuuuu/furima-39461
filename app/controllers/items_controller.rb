@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
 
   def index  
-    
+
      @items = Item.order("created_at DESC")
   end
 
@@ -48,6 +48,8 @@ def destroy
     render :edit, status: :unprocessable_entity
   end
 end
+
+
 
   private
   def item_params
