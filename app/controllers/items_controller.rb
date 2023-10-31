@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update,:destroy]
   before_action :authenticate_user!, only: [:new,:edit,:destroy]
   before_action :contributor_confirmation, only: [:edit, :destroy]
-  
+  before_action :sold_out_confirmation, only: [:edit]
 
 
 
@@ -30,8 +30,9 @@ class ItemsController < ApplicationController
  end
 
 def edit
-   contributor_confirmation
-   redirect_to root_path if current_user == @item.user
+  #  contributor_confirmation
+  #  redirect_to root_path if current_user == @item.user
+  #  sold_out_confirmation
 end
 
 def update
@@ -66,6 +67,11 @@ end
     @item = Item.find(params[:id])
   end
 
+  def sold_out_confirmation
+    redirect_to root_path unless @item.not_sold_out?
+  end
+
 end
 
 
+;

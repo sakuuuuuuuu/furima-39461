@@ -5,8 +5,8 @@ FactoryBot.define do
     city { '東京都' }
     street { '渋谷区' }
     phone { '09012345678' }
-    user_id { 1 }
-    item_id { 1 }
+    # user_id { 1 }
+    # item_id { 1 }
     token { 'token123' }
   end
 end

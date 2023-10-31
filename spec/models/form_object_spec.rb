@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe FormObject, type: :model do
-  
+  describe '商品購入の保存' do
     before do
-      # user = FactoryBot.create(:user)
-      # @donation_address = FactoryBot.build(:donation_address, user_id: user.id)
-      @form_object = FactoryBot.build(:form_object)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @form_object = FactoryBot.build(:form_object, user_id: user.id, item_id: item.id)
     end
 
-    describe '商品購入の保存' do
+    
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@form_object).to be_valid
+      end
+      it '建物名がなくても保存できること' do
+        @form_object.building = ''
         expect(@form_object).to be_valid
       end
     end
@@ -73,6 +77,12 @@ RSpec.describe FormObject, type: :model do
         @form_object.valid?
         expect(@form_object.errors.full_messages).to include("Item can't be blank")
       end
+      it 'tokenがないと保存できないこと' do
+        @form_object.token = nil
+        @form_object.valid?
+        expect(@form_object.errors.full_messages).to include("Token can't be blank")
+      end
+
     end
   end
 end

@@ -1,12 +1,14 @@
 class PurchaseRecordsController < ApplicationController
   # before_action :contributor_confirmation, only: [:index]
+    before_action :set_item, only: [:index, :create]
+    # before_action :contributor_confirmation, only: [:index]
+    before_action :contributor_confirmation2, only: [:index]
+    before_action :sold_out_confirmation, only: [:index]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
     @form_object = FormObject.new # ←新しくインスタンスを生成するnewメソッド
-    contributor_confirmation
-    contributor_confirmation2
+    
   end
 
   # def new
@@ -14,7 +16,6 @@ class PurchaseRecordsController < ApplicationController
   # end
 
   def create
-    @item = Item.find(params[:item_id])
     @form_object = FormObject.new(purchase_record_params)
     if @form_object.valid?
       pay_item
@@ -44,14 +45,23 @@ class PurchaseRecordsController < ApplicationController
   
 
 
-  def contributor_confirmation
-    redirect_to root_path unless current_user == @item.user
-  end
+  # def contributor_confirmation
+  #   redirect_to root_path unless current_user == @item.user
+  # end
 
 
   def contributor_confirmation2
     redirect_to root_path if current_user == @item.user
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def sold_out_confirmation
+    redirect_to root_path unless @item.not_sold_out?
+  end
+
 
 
   # def contributor_confirmation2

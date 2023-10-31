@@ -97,5 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_081307) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
+  add_foreign_key "purchase_records", "items"
+  add_foreign_key "purchase_records", "users"
   add_foreign_key "shippings", "purchase_records"
 end
