@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
 
 
-  # has_one :purchase_record  商品購入機能実装で復活させる
+  has_one :purchase_record # 商品購入機能実装で復活させる
   belongs_to :user
   has_one_attached :image
 
@@ -46,4 +46,7 @@ class Item < ApplicationRecord
 
   # validates :user, presence: true
   
+  def not_sold_out?
+    purchase_record.nil?
+  end
 end
