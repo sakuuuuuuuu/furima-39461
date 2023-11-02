@@ -10,8 +10,11 @@ priceInput.addEventListener("input", () => {
     
     const addProfit = document.getElementById("profit");
     // addProfit.innerHTML = inputValue-Tax;
-    const profit = inputValue - Tax;
-    const roundedProfit = Math.floor(profit); // 小数点以下を切り捨てる
+    // const profit = inputValue - Tax;
+    // const roundedProfit = Math.floor(profit); // 小数点以下を切り捨てる
+    const profit = inputValue - roundedTax;
+    const roundedProfit = profit;
+
     addProfit.innerHTML = roundedProfit;
   });
 });
