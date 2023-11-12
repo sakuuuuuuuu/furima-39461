@@ -91,7 +91,7 @@ gem 'devise'
 # gem 'image_processing', '~> 1.2'
 
 gem 'pry-rails'
-
+gem 'unf_ext', '0.0.7.7'
 gem 'payjp'
 
 gem 'gon'
